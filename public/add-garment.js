@@ -3,15 +3,26 @@ const addGarmetBtn = document.querySelector('.addGarmentBtn');
 const hideAddGarmetBtn = document.querySelector('.hideAddGarmetBtn');
 const addGarmetSection = document.querySelector('.add.garment');
 const addGarmetButtonSection = document.querySelector('.add.button');
+const snack = document.getElementById("snack");
+
+// function myFunction() {
+// 	x.innerHTML = value;
+// 	x.className = "show";
+// 	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+// }
 
 function showMessage(value){
-	message.innerHTML = value;
-	message.classList.toggle('hidden');
+	snack.innerHTML = value;
+	snack.className = "show";
+	setTimeout(function(){ snack.className = snack.className.replace("show", ""); }, 3000);
+
+	// message.innerHTML = value;
+	// message.classList.toggle('hidden');
 	
-	setTimeout(() =>  {
-		message.innerHTML = '';
-		message.classList.toggle('hidden');
-	}, 3000);
+	// setTimeout(() =>  {
+	// 	message.innerHTML = '';
+	// 	message.classList.toggle('hidden');
+	// }, 3000);
 }
 
 function toggleAddGarmetScreen() {
