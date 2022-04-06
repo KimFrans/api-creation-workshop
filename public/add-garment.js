@@ -27,7 +27,7 @@ function showMessage(value){
 
 function toggleAddGarmetScreen() {
 	addGarmetSection.classList.toggle('hidden');
-	addGarmetButtonSection.classList.toggle('hidden');
+	// addGarmetButtonSection.classList.toggle('hidden');
 }
 
 hideAddGarmetBtn.addEventListener('click', function(evt) {

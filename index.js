@@ -70,7 +70,7 @@ app.post('/api/garments', (req, res) => {
 	// only 3 fields are made mandatory here
 	// you can change that
 
-	if (!description || !img || !price) {
+	if (!description || !img || !gender || !season || !price) {
 		res.json({
 			status: 'error',
 			message: 'Required data not supplied',
@@ -78,20 +78,67 @@ app.post('/api/garments', (req, res) => {
 	} else {
 
 		// you can check for duplicates here using garments.find
-		
-		// add a new entry into the garments list
-		garments.push({
-			description,
-			img,
-			gender,
-			season,
-			price
-		});
+		// const duplicates = garments.find((description, img,  gender,  season,  price) => {
+		// 	for(var i=0;i<garments.length;i++){
+		// 		if(garments[i].description == description && garments[i].img == img && garments[i].gender == gender && garments[i].season == season && garments[i].price == price){
+		// 			res.json({
+		// 				status: 'error',
+		// 				message: 'This item already exists',
+		// 			});
+		// 		}
+		// 	}
+		// })
 
-		res.json({
-			status: 'success',
-			message: 'New garment added.',
-		});
+		// for(var i=0;i<garments.length;i++){
+		// 	if(garments[i].description == description && garments[i].img == img && garments[i].gender == gender && garments[i].season == season && garments[i].price == price){
+		// 	   console.log("The search found in JSON Object");
+		// 	   res.json({
+		// 			status: 'error',
+		// 			message: 'This item already exists',
+		// 		});
+		// 	//    break;
+		// 	}
+		// }
+
+
+ 		let Duplicate = garments.find(garment => garment.description == description && garment.img == img && garment.gender == gender && garment.season == season && garment.price == price);
+			if (typeof (Duplicate) === "undefined") {
+				garments.push({
+					description,
+					img,
+					gender,
+					season,
+					price
+				});
+				res.json({
+					status: 'success',
+					message: 'New garment added.',
+				});
+				return;
+				
+			} else {
+				if (JSON.stringify(Duplicate).length > 0) {
+					res.json({
+						status: 'error',
+						message: 'This item already exists',
+					});
+					return;
+				}
+			}
+
+		// add a new entry into the garments list
+		// garments.push({
+		// 	description,
+		// 	img,
+		// 	gender,
+		// 	season,
+		// 	price
+		// });
+
+		// res.json({
+		// 	status: 'success',
+		// 	message: 'New garment added.',
+		// });
 	}
 
 });
