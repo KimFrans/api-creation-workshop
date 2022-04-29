@@ -5,11 +5,10 @@ const addGarmetSection = document.querySelector('.add.garment');
 const addGarmetButtonSection = document.querySelector('.add.button');
 const snack = document.getElementById("snack");
 
-// function myFunction() {
-// 	x.innerHTML = value;
-// 	x.className = "show";
-// 	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-// }
+const nameTextBox = document.querySelector(".inputName")
+const hideinputField = document.querySelector(".username")
+const showGarments = document.querySelector(".app")
+
 
 function showMessage(value){
 	snack.innerHTML = value;
@@ -34,6 +33,7 @@ hideAddGarmetBtn.addEventListener('click', function(evt) {
 	toggleAddGarmetScreen()
 });
 
+
 const fieldManager = FieldManager({
 	'description': '',
 	'img': '',
@@ -52,10 +52,18 @@ addGarmetBtn.addEventListener('click', function(evt) {
 		.then(result =>{
 			if (result.data.status == 'error') {
 				showMessage(result.data.message);
+				if(snack.classList.toggle("success")){
+					snack.classList.remove("success")
+				}
+				snack.classList.add("error")
 			} else {
 				toggleAddGarmetScreen();
 				// show success message from API
 				showMessage(result.data.message);
+				if(snack.classList.toggle("error")){
+					snack.classList.remove("error")
+				}
+				snack.classList.add("success")
 				fieldManager.clear();
 				// show all the data
 				filterData();
