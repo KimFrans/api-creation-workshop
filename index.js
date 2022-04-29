@@ -15,7 +15,6 @@ app.use(express.urlencoded({ extended: false }));
 // import the dataset to be used here
 const garments = require('./garments.json');
 
-
 const PORT = process.env.PORT || 4017;
 
 function checkToken(req, res, next){
